@@ -3,11 +3,14 @@
 #include <set>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
-int x, y;
-vector<vector<char> > v;
+int x, y; // dimensions
+vector<vector<char> > v; // initial state
+set<string> s; // stores visited states
+map<string, string> m; // stores parents
 
 // initialize x, y, and v
 void init() {
@@ -46,6 +49,8 @@ vector<vector<char> > sToV(string str) {
 
 int main(void) {
     init();
+
+    /*
     cout << "\nBoard:\n";
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++)
@@ -61,6 +66,7 @@ int main(void) {
             cout << v[i][j] << " ";
         cout << endl;
     }
+    */
 }
 
 /*
