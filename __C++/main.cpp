@@ -1,14 +1,15 @@
 #include <iostream>
-#include <string>
-#include <vector>
 #include <queue>
 #include <set>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 int x, y;
 vector<vector<char> > v;
 
+// initialize x, y, and v
 void init() {
     cout << "Enter number of rows:" << endl;
     cin >> x;
@@ -25,6 +26,7 @@ void init() {
             cin >> v[i][j];
 }
 
+// convert vector to string
 string vToS(vector<vector<char> > vec) {
     string str = "";
     for (int i = 0; i < x; i++)
@@ -33,8 +35,13 @@ string vToS(vector<vector<char> > vec) {
     return str;
 }
 
+// convert string to vector
 vector<vector<char> > sToV(string str) {
-    //
+    vector<vector<char> > vec(x, vector<char>(y));
+    for (int i = 0; i < x; i++)
+        for (int j = 0; j < y; j++)
+            vec[i][j] = str[i * x + j];
+    return vec;
 }
 
 int main(void) {
@@ -45,8 +52,15 @@ int main(void) {
             cout << v[i][j] << " ";
         cout << endl;
     }
-    cout << "\n"
-         << vToS(v);
+    cout << vToS(v) << endl;
+
+    v = sToV(vToS(v));
+    cout << "\nBoard:\n";
+    for (int i = 0; i < v.size(); i++) {
+        for (int j = 0; j < v[i].size(); j++)
+            cout << v[i][j] << " ";
+        cout << endl;
+    }
 }
 
 /*
@@ -54,5 +68,5 @@ int main(void) {
 .....
 B.T.B
 .....
-*...*
+*.B.*
 */
