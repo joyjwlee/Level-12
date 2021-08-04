@@ -8,7 +8,8 @@
 using namespace std;
 
 int x, y;                      // dimensions
-vector<vector<char>> v;        // initial state
+vector<vector<char> > v;        // initial state
+vector<int> targets;           // stores indices of T's
 set<string> s;                 // stores visited states
 map<string, string> m;         // stores parents
 string starting, ending, curr; // starting, ending, and current states
@@ -16,6 +17,7 @@ queue<string> q;               // queue for bfs
 
 // initialize x, y, and v
 void init() {
+    // x and y
     cout << "Enter number of rows:" << endl;
     cin >> x;
     cout << "Enter number of cols:" << endl;
@@ -24,15 +26,21 @@ void init() {
     for (int i = 0; i < x; i++)
         v[i].resize(y);
 
+    // v
     cout << "Enter the board: " << endl;
     cout << "(B for block, T for target, . for empty, and * for wall" << endl;
-    for (int i = 0; i < x; i++)
-        for (int j = 0; j < y; j++)
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < y; j++) {
             cin >> v[i][j];
+            // store indices for T
+            if (v[i][j] == 'T')
+                targets.push_back(i * x + j);
+        }
+    }
 }
 
 // convert vector to string
-string vToS(vector<vector<char>> vec) {
+string vToS(vector<vector<char> > vec) {
     string str = "";
     for (int i = 0; i < x; i++)
         for (int j = 0; j < y; j++)
@@ -41,8 +49,8 @@ string vToS(vector<vector<char>> vec) {
 }
 
 // convert string to vector
-vector<vector<char>> sToV(string str) {
-    vector<vector<char>> vec(x, vector<char>(y));
+vector<vector<char> > sToV(string str) {
+    vector<vector<char> > vec(x, vector<char>(y));
     for (int i = 0; i < x; i++)
         for (int j = 0; j < y; j++)
             vec[i][j] = str[i * x + j];
@@ -51,10 +59,7 @@ vector<vector<char>> sToV(string str) {
 
 // return true is current state is answer (no T's left)
 bool isAns(string str) {
-    for (char c : str)
-        if (c == 'T')
-            return false;
-    return true;
+    // TODO 1
 }
 
 // bfs to find answer
@@ -63,8 +68,8 @@ void bfs() {
     starting = vToS(v);
 
     // mark root as visited and enqueue
-    s.insert(starting)
-        q.push(starting);
+    s.insert(starting);
+    q.push(starting);
 
     // bfs
     while (!q.empty()) {
@@ -73,7 +78,13 @@ void bfs() {
         q.pop();
 
         // if we found answer
-        if ()
+        if (isAns(curr)) {
+            ending = curr;
+            break;
+        }
+
+        // otherwise loop through next states
+        // TODO 2
     }
 }
 
