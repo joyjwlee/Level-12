@@ -1,16 +1,18 @@
 #include <iostream>
+#include <map>
 #include <queue>
 #include <set>
 #include <string>
 #include <vector>
-#include <map>
 
 using namespace std;
 
-int x, y; // dimensions
-vector<vector<char> > v; // initial state
-set<string> s; // stores visited states
-map<string, string> m; // stores parents
+int x, y;                      // dimensions
+vector<vector<char>> v;        // initial state
+set<string> s;                 // stores visited states
+map<string, string> m;         // stores parents
+string starting, ending, curr; // starting, ending, and current states
+queue<string> q;               // queue for bfs
 
 // initialize x, y, and v
 void init() {
@@ -30,7 +32,7 @@ void init() {
 }
 
 // convert vector to string
-string vToS(vector<vector<char> > vec) {
+string vToS(vector<vector<char>> vec) {
     string str = "";
     for (int i = 0; i < x; i++)
         for (int j = 0; j < y; j++)
@@ -39,16 +41,45 @@ string vToS(vector<vector<char> > vec) {
 }
 
 // convert string to vector
-vector<vector<char> > sToV(string str) {
-    vector<vector<char> > vec(x, vector<char>(y));
+vector<vector<char>> sToV(string str) {
+    vector<vector<char>> vec(x, vector<char>(y));
     for (int i = 0; i < x; i++)
         for (int j = 0; j < y; j++)
             vec[i][j] = str[i * x + j];
     return vec;
 }
 
+// return true is current state is answer (no T's left)
+bool isAns(string str) {
+    for (char c : str)
+        if (c == 'T')
+            return false;
+    return true;
+}
+
+// bfs to find answer
+void bfs() {
+    // save starting state
+    starting = vToS(v);
+
+    // mark root as visited and enqueue
+    s.insert(starting)
+        q.push(starting);
+
+    // bfs
+    while (!q.empty()) {
+        // get current
+        curr = q.front();
+        q.pop();
+
+        // if we found answer
+        if ()
+    }
+}
+
 int main(void) {
     init();
+    bfs();
 
     /*
     cout << "\nBoard:\n";
