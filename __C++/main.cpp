@@ -75,6 +75,14 @@ bool isAns(string str) {
     return true;
 }
 
+vector<string> generateNext(vector<vector<char> > vec) {
+    vector<string> nextStates;
+
+    // TODO: GENERATE
+
+    return nextStates;
+}
+
 // bfs to find answer
 void bfs() {
     // save starting state
@@ -97,7 +105,11 @@ void bfs() {
         }
 
         // otherwise loop through next states
-        // TODO 2
+        vector<string> nextStates = generateNext(sToV(curr));
+        for (string str : nextStates) {
+            s.insert(str);
+            q.push(str);
+        }
     }
 }
 
