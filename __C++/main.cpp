@@ -76,10 +76,21 @@ bool isAns(string str) {
 }
 
 vector<string> generateNext(vector<vector<char> > vec) {
+    // store next states from current
     vector<string> nextStates;
 
-    // TODO: GENERATE
+    // loop through all blocks
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < y; j++) {
+            // if block
+            if (vec[i][j] == 'B') {
+                // move in all 4 directions, add to vector
+                // TODO: GENERATE NEW COORDS
+            }
+        }
+    }
 
+    // once done looping, return
     return nextStates;
 }
 
@@ -107,8 +118,11 @@ void bfs() {
         // otherwise loop through next states
         vector<string> nextStates = generateNext(sToV(curr));
         for (string str : nextStates) {
-            s.insert(str);
-            q.push(str);
+            // if not found yet
+            if (s.find(str) != s.end()) {
+                s.insert(str);
+                q.push(str);
+            }
         }
     }
 }
