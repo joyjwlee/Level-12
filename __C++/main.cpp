@@ -75,9 +75,9 @@ bool isAns(string str) {
     return true;
 }
 
-// true if r and c within x and y
-bool inBounds() {
-    if (0 <= x && x < r && 0 <= y && y < c)
+// true if in bounds of x and y
+bool inBounds(int a, int b) {
+    if (0 <= a && a < r && 0 <= b && b < c)
         return true;
     return false;
 }
@@ -92,7 +92,12 @@ vector<string> generateNext(vector<vector<char> > vec) {
             // if block
             if (vec[i][j] == 'B') {
                 // move in all 4 directions, add to vector
-                // ups
+                r = i, c = j;
+                // up
+                r--;
+                while (inBounds(r-1, c) /*&& vec[r-1][c] is okay*/)
+                    r--;
+
             }
         }
     }
