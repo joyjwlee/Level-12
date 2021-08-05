@@ -15,18 +15,18 @@ map<string, string> m;         // stores parents
 string starting, ending, curr; // starting, ending, and current states
 queue<string> q;               // queue for bfs
 
-// initialize x, y, and v
+// initialize x, y, v, and targets
 void init() {
     // x and y
     cout << "Enter number of rows:" << endl;
     cin >> x;
+    v.resize(x);
     cout << "Enter number of cols:" << endl;
     cin >> y;
-    v.resize(x);
     for (int i = 0; i < x; i++)
         v[i].resize(y);
 
-    // v
+    // v and targets
     cout << "Enter the board: " << endl;
     cout << "(B for block, T for target, . for empty, and * for wall" << endl;
     for (int i = 0; i < x; i++) {
@@ -59,7 +59,20 @@ vector<vector<char> > sToV(string str) {
 
 // return true is current state is answer (no T's left)
 bool isAns(string str) {
-    // TODO 1
+    // keep track of indices of blocks
+    set<int> indices;
+    for (int i = 0; i < str.size(); i++)
+        if (str[i] == 'B')
+            indices.insert(i);
+
+    // loop through all values in targets
+    for (int i : targets)
+        // if target is not covered
+        if (indices.find(i) == indices.end())
+            return false;
+
+    // otherwise solution
+    return true;
 }
 
 // bfs to find answer
