@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int x, y;                      // dimensions
+int x, y, r, c;                // dimensions and coordinates
 vector<vector<char> > v;        // initial state
 vector<int> targets;           // stores indices of T's
 set<string> s;                 // stores visited states
@@ -75,6 +75,13 @@ bool isAns(string str) {
     return true;
 }
 
+// true if r and c within x and y
+bool inBounds() {
+    if (0 <= x && x < r && 0 <= y && y < c)
+        return true;
+    return false;
+}
+
 vector<string> generateNext(vector<vector<char> > vec) {
     // store next states from current
     vector<string> nextStates;
@@ -85,7 +92,7 @@ vector<string> generateNext(vector<vector<char> > vec) {
             // if block
             if (vec[i][j] == 'B') {
                 // move in all 4 directions, add to vector
-                // TODO: GENERATE NEW COORDS
+                // ups
             }
         }
     }
