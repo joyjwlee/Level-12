@@ -77,7 +77,7 @@ bool isAns(string str) {
 
 // true if in bounds of x and y
 bool inBounds(int a, int b) {
-    if (0 <= a && a < r && 0 <= b && b < c)
+    if (0 <= a && a < x && 0 <= b && b < y)
         return true;
     return false;
 }
@@ -93,11 +93,50 @@ vector<string> generateNext(vector<vector<char> > vec) {
             if (vec[i][j] == 'B') {
                 // move in all 4 directions, add to vector
                 r = i, c = j;
+                
                 // up
-                r--;
-                while (inBounds(r-1, c) /*&& vec[r-1][c] is okay*/)
+                while (inBounds(r - 1, c) && (vec[r - 1][c] == '.' || vec[r - 1][c] == 'T'))
                     r--;
+                // set and reset (repeated)
+                vec[r][c] = 'B';
+                vec[i][j] = '.';
+                nextStates.push_back(vToS(vec));
+                vec[r][c] = '.';
+                vec[i][j] = 'B';
+                r = i, c = j;
+                
+                // down
+                while (inBounds(r + 1, c) && (vec[r + 1][c] == '.' || vec[r + 1][c] == 'T'))
+                    r++;
+                // set and reset (repeated)
+                vec[r][c] = 'B';
+                vec[i][j] = '.';
+                nextStates.push_back(vToS(vec));
+                vec[r][c] = '.';
+                vec[i][j] = 'B';
+                r = i, c = j;
 
+                // left
+                while (inBounds(r, c - 1) && (vec[r][c - 1] == '.' || vec[r][c - 1] == 'T'))
+                    c--;
+                // set and reset (repeated)
+                vec[r][c] = 'B';
+                vec[i][j] = '.';
+                nextStates.push_back(vToS(vec));
+                vec[r][c] = '.';
+                vec[i][j] = 'B';
+                r = i, c = j;
+
+                // right
+                while (inBounds(r, c + 1) && (vec[r][c + 1] == '.' || vec[r][c + 1] == 'T'))
+                    c++;
+                // set and reset (repeated)
+                vec[r][c] = 'B';
+                vec[i][j] = '.';
+                nextStates.push_back(vToS(vec));
+                vec[r][c] = '.';
+                vec[i][j] = 'B';
+                r = i, c = j;
             }
         }
     }
@@ -139,19 +178,25 @@ void bfs() {
     }
 }
 
-int main(void) {
-    init();
-    bfs();
-
-    /*
+void printBoard(vector<vector<char> > vec) {
     cout << "\nBoard:\n";
     for (int i = 0; i < x; i++) {
         for (int j = 0; j < y; j++)
-            cout << v[i][j] << " ";
+            cout << vec[i][j] << " ";
         cout << endl;
     }
-    cout << vToS(v) << endl;
+    cout << vToS(vec) << endl;
+}
 
+int main(void) {
+    init();
+    // bfs();
+
+    vector<string> yeet = generateNext(v);
+    for (string str : yeet)
+        printBoard(sToV(str));
+
+    /*
     v = sToV(vToS(v));
     cout << "\nBoard:\n";
     for (int i = 0; i < v.size(); i++) {
