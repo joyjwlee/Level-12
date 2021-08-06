@@ -190,11 +190,14 @@ void printBoard(vector<vector<char> > vec) {
 
 int main(void) {
     init();
-    // bfs();
+    bfs();
+    cout << "done!";
 
+    /*
     vector<string> yeet = generateNext(v);
     for (string str : yeet)
         printBoard(sToV(str));
+    */
 
     /*
     v = sToV(vToS(v));
