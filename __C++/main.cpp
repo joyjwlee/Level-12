@@ -93,24 +93,24 @@ vector<string> generateNext(vector<vector<char> > vec) {
             if (vec[i][j] == 'B') {
                 // move in all 4 directions, add to vector
                 r = i, c = j;
-                
+
                 // up
                 while (inBounds(r - 1, c) && (vec[r - 1][c] == '.' || vec[r - 1][c] == 'T'))
                     r--;
                 // set and reset (repeated)
-                vec[r][c] = 'B';
                 vec[i][j] = '.';
+                vec[r][c] = 'B';
                 nextStates.push_back(vToS(vec));
                 vec[r][c] = '.';
                 vec[i][j] = 'B';
                 r = i, c = j;
-                
+
                 // down
                 while (inBounds(r + 1, c) && (vec[r + 1][c] == '.' || vec[r + 1][c] == 'T'))
                     r++;
                 // set and reset (repeated)
-                vec[r][c] = 'B';
                 vec[i][j] = '.';
+                vec[r][c] = 'B';
                 nextStates.push_back(vToS(vec));
                 vec[r][c] = '.';
                 vec[i][j] = 'B';
@@ -120,8 +120,8 @@ vector<string> generateNext(vector<vector<char> > vec) {
                 while (inBounds(r, c - 1) && (vec[r][c - 1] == '.' || vec[r][c - 1] == 'T'))
                     c--;
                 // set and reset (repeated)
-                vec[r][c] = 'B';
                 vec[i][j] = '.';
+                vec[r][c] = 'B';
                 nextStates.push_back(vToS(vec));
                 vec[r][c] = '.';
                 vec[i][j] = 'B';
@@ -131,8 +131,8 @@ vector<string> generateNext(vector<vector<char> > vec) {
                 while (inBounds(r, c + 1) && (vec[r][c + 1] == '.' || vec[r][c + 1] == 'T'))
                     c++;
                 // set and reset (repeated)
-                vec[r][c] = 'B';
                 vec[i][j] = '.';
+                vec[r][c] = 'B';
                 nextStates.push_back(vToS(vec));
                 vec[r][c] = '.';
                 vec[i][j] = 'B';
